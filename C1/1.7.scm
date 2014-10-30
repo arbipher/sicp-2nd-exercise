@@ -1,0 +1,25 @@
+;Newtow's Method for Square Root
+(define (sqrt-iter guess x)
+	(if (good-enough? guess (improve guess x))
+		guess
+		(sqrt-iter (improve guess x) x)))
+
+(define (improve guess x)
+	(average guess (/ x guess)))
+
+(define (average x y)
+	(/ (+ x y) 2))
+
+(define (good-enough? guess_old guess_new)
+	(< (/ (abs (- guess_old guess_new)) guess_old) 0.01))
+
+(define (sqrt x)
+	(sqrt-iter 1.0 x))
+
+(sqrt 0.00000000000000000000000000000000000001)
+
+(sqrt 9.1)
+
+(sqrt 100)
+
+(sqrt 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
