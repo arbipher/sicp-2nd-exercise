@@ -1,0 +1,48 @@
+(define (cont-frac n d k)
+  (define (cont-fact-recursive i)
+    (if (= i k)
+      (/ (n k) (d k))
+      (/ (n k) (+ (d k) (cont-fact-recursive (+ i 1))))
+    )
+  )
+  (cont-fact-recursive 1)
+)
+
+(cont-frac (lambda (i) 1.0)
+		   (lambda (i) 1.0)
+		   200)
+
+(define (cont-frac-i n d k)
+  (define (cont-fact-iter result i)
+    (if (= i 0)
+      result
+      (cont-fact-iter (/ (n k) (+ (d k) result)) (- i 1))
+    )
+  )
+  (cont-fact-iter (/ (n k) (d k)) (- k 1))
+)
+
+(define (smallest-k torlerence)
+  (define (calc-golden k)
+    (cont-frac-i (lambda (i) 1.0)
+		   	 	 (lambda (i) 1.0)
+		   	 	 k)
+  )
+  (let ((golden (/ 2.0 (+ (sqrt 5) 1))))
+  	(define (try k)
+  	  (newline)
+  	  (display (+ k 1))
+  	  (newline)
+  	  (display (calc-golden k))
+      (if (< (abs (- golden (calc-golden k))) torlerence)
+      	k
+      	(try (+ k 1))
+  	  )
+    )
+    (try 2)
+  )
+)
+
+(smallest-k 0.0001)
+
+
