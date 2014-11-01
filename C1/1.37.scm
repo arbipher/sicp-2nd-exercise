@@ -2,7 +2,7 @@
   (define (cont-fact-recursive i)
     (if (= i k)
       (/ (n k) (d k))
-      (/ (n k) (+ (d k) (cont-fact-recursive (+ i 1))))
+      (/ (n i) (+ (d i) (cont-fact-recursive (+ i 1))))
     )
   )
   (cont-fact-recursive 1)
@@ -16,7 +16,7 @@
   (define (cont-fact-iter result i)
     (if (= i 0)
       result
-      (cont-fact-iter (/ (n k) (+ (d k) result)) (- i 1))
+      (cont-fact-iter (/ (n i) (+ (d i) result)) (- i 1))
     )
   )
   (cont-fact-iter (/ (n k) (d k)) (- k 1))
